@@ -36,7 +36,7 @@ days=st.sidebar.selectbox("days", ["7 Days","30 Days","180 Days"])
 Refresh=st.sidebar.button("Refresh")
 
 if Refresh:    
-     df,train,test,train_log,test_log=scfi.dataset("C:/Users/eagle/OneDrive/Documents/vijaya/scipy/freight_index.csv")
+     df,train,test,train_log,test_log=scfi.dataset("https://raw.githubusercontent.com/Somasekhar1287/Fbx/main/freight_index.csv")
      st.write(df) 
      
      st.dataframe(df.describe())
