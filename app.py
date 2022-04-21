@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
+
 import numpy as np
 import numpy as np
 import pandas as pd
@@ -17,11 +17,11 @@ import statsmodels.formula.api as smf
 import statsmodels.api as sm
 from pandas.plotting import register_matplotlib_converters
 from tabulate import tabulate
-register_matplotlib_converters()
+
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error
-
+import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
@@ -30,15 +30,16 @@ from keras.layers import *
 from keras.callbacks import EarlyStopping
 import matplotlib.pyplot as plt
 import scfi
-st.title("FBX logistics")
+st.markdown("<h1 style='text-align: center; color:#F08080 ;'>China-Shanghai Freight Index Logistics</h1>", unsafe_allow_html=True)
 Models=st.sidebar.selectbox("Models", ["ARIMA","LSTM"])
 days=st.sidebar.selectbox("days", ["7 Days","30 Days","180 Days"])
 Refresh=st.sidebar.button("Refresh")
 
 if Refresh:    
-     df,train,test,train_log,test_log=scfi.dataset("https://raw.githubusercontent.com/Somasekhar1287/Fbx/main/freight_index.csv")
+     st.markdown("<h3 style='text-align: Left; color:  #CA6F1E;'>Dataset</h3>", unsafe_allow_html=True)
+     df,train,test,train_log,test_log=scfi.dataset(https://raw.githubusercontent.com/vijayapaluri/shanghaichina-index/main/freight_index.csv")
      st.write(df) 
-     
+     st.markdown("<h3 style='text-align: Left; color:  #CA6F1E;'>Summary Statistics</h3>", unsafe_allow_html=True) 
      st.dataframe(df.describe())
      st.dataframe(df.skew())
      st.dataframe(df.kurt())
@@ -113,13 +114,14 @@ if Refresh:
             fig = plt.figure(figsize = (16,8))
             ax1 = fig.add_subplot(1, 1, 1)
             ax1.set_facecolor('#EAF2F8')
-            plt.title("Confidence Interval after 180 days")
-            plt.plot(actual_prices)
-            plt.plot(predicted_prices)
+            
+            plt.plot(actual_prices,label='actual')
+            plt.plot(predicted_prices,label='predicted')
             plt.xlabel("date")
             plt.ylabel("value")
             plt.legend()
             st.pyplot(fig)
+            st.markdown("<h5 style='text-align: Left; color:  #EC7063;'>Model Performance</h5>", unsafe_allow_html=True)
             st.write(eval)
         elif days=="30 Days":
             actual_prices,predicted_prices,eval=scfi.LSTM_30days(df)
@@ -127,13 +129,14 @@ if Refresh:
             fig = plt.figure(figsize = (16,8))
             ax1 = fig.add_subplot(1, 1, 1)
             ax1.set_facecolor('#EAF2F8')
-            plt.title("Confidence Interval after 180 days")
-            plt.plot(actual_prices)
-            plt.plot(predicted_prices)
+            
+            plt.plot(actual_prices,label='actual')
+            plt.plot(predicted_prices,label='predicted')
             plt.xlabel("date")
             plt.ylabel("value")
             plt.legend()
             st.pyplot(fig)
+            st.markdown("<h5 style='text-align: Left; color:  #EC7063;'>Model Performance</h5>", unsafe_allow_html=True)
             st.write(eval)
         elif days=="180 Days":
             actual_prices,predicted_prices,eval=scfi.LSTM_180days(df)
@@ -141,13 +144,14 @@ if Refresh:
             fig = plt.figure(figsize = (16,8))
             ax1 = fig.add_subplot(1, 1, 1)
             ax1.set_facecolor('#EAF2F8')
-            plt.title("Confidence Interval after 180 days")
-            plt.plot(actual_prices)
-            plt.plot(predicted_prices)
+            
+            plt.plot(actual_prices,label='actual')
+            plt.plot(predicted_prices,label='predicted')
             plt.xlabel("date")
             plt.ylabel("value")
             plt.legend()
             st.pyplot(fig)
+            st.markdown("<h5 style='text-align: Left; color:  #EC7063;'>Model Performance</h5>", unsafe_allow_html=True)
             st.write(eval)
             
         
@@ -156,3 +160,4 @@ if Refresh:
          
 
             
+

@@ -20,7 +20,7 @@ import statsmodels.formula.api as smf
 import statsmodels.api as sm
 from pandas.plotting import register_matplotlib_converters
 from tabulate import tabulate
-register_matplotlib_converters()
+
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_error,mean_squared_error
